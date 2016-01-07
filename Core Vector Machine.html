@@ -1,0 +1,663 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+
+
+<script type="text/javascript" src="/static/js/analytics.js"></script>
+<script type="text/javascript">archive_analytics.values.server_name="wwwb-app13.us.archive.org";archive_analytics.values.server_ms=141;</script>
+<link type="text/css" rel="stylesheet" href="/static/css/banner-styles.css"/>
+
+
+  <title>Core Vector Machine</title>
+         
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=windows-1252">
+      
+  <meta content="MSHTML 6.00.2800.1458" name="GENERATOR">
+      
+  <meta content="8.0.3514" name="Version">
+      
+  <meta content="11/26/96" name="Date">
+      
+  <meta content="C:\Programme\Microsoft Office\Office\HTML.DOT"
+ name="Template">
+</head>
+  <body text="#6666ff" vlink="#ff9999" alink="#ff0000" link="#0000ff"
+ bgcolor="#ffffff">
+
+
+<!-- BEGIN WAYBACK TOOLBAR INSERT -->
+<script type="text/javascript" src="/static/js/disclaim-element.js" ></script>
+<script type="text/javascript" src="/static/js/graph-calc.js" ></script>
+<script type="text/javascript">//<![CDATA[
+var __wm = (function(imgWidth,imgHeight,yearImgWidth,monthImgWidth){
+var wbPrefix = "/web/";
+var wbCurrentUrl = "http://c2inet.sce.ntu.edu.sg/ivor/cvm.html";
+
+var firstYear = 1996;
+var displayDay = "15";
+var displayMonth = "Jun";
+var displayYear = "2013";
+var prettyMonths = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+var $D=document,$=function(n){return document.getElementById(n)};
+var trackerVal,curYear = -1,curMonth = -1;
+var yearTracker,monthTracker;
+function showTrackers(val) {
+  if (val===trackerVal) return;
+  var $ipp=$("wm-ipp");
+  var $y=$("displayYearEl"),$m=$("displayMonthEl"),$d=$("displayDayEl");
+  if (val) {
+    $ipp.className="hi";
+  } else {
+    $ipp.className="";
+    $y.innerHTML=displayYear;$m.innerHTML=displayMonth;$d.innerHTML=displayDay;
+  }
+  yearTracker.style.display=val?"inline":"none";
+  monthTracker.style.display=val?"inline":"none";
+  trackerVal = val;
+}
+function trackMouseMove(event,element) {
+  var eventX = getEventX(event);
+  var elementX = getElementX(element);
+  var xOff = Math.min(Math.max(0, eventX - elementX),imgWidth);
+  var monthOff = xOff % yearImgWidth;
+
+  var year = Math.floor(xOff / yearImgWidth);
+  var monthOfYear = Math.min(11,Math.floor(monthOff / monthImgWidth));
+  // 1 extra border pixel at the left edge of the year:
+  var month = (year * 12) + monthOfYear;
+  var day = monthOff % 2==1?15:1;
+  var dateString = zeroPad(year + firstYear) + zeroPad(monthOfYear+1,2) +
+    zeroPad(day,2) + "000000";
+
+  $("displayYearEl").innerHTML=year+firstYear;
+  $("displayMonthEl").innerHTML=prettyMonths[monthOfYear];
+  // looks too jarring when it changes..
+  //$("displayDayEl").innerHTML=zeroPad(day,2);
+  var url = wbPrefix + dateString + '/' +  wbCurrentUrl;
+  $("wm-graph-anchor").href=url;
+
+  if(curYear != year) {
+    var yrOff = year * yearImgWidth;
+    yearTracker.style.left = yrOff + "px";
+    curYear = year;
+  }
+  if(curMonth != month) {
+    var mtOff = year + (month * monthImgWidth) + 1;
+    monthTracker.style.left = mtOff + "px";
+    curMonth = month;
+  }
+}
+function hideToolbar() {
+  $("wm-ipp").style.display="none";
+}
+function bootstrap() {
+  var $spk=$("wm-ipp-sparkline");
+  yearTracker=$D.createElement('div');
+  yearTracker.className='yt';
+  with(yearTracker.style){
+    display='none';width=yearImgWidth+"px";height=imgHeight+"px";
+  }
+  monthTracker=$D.createElement('div');
+  monthTracker.className='mt';
+  with(monthTracker.style){
+    display='none';width=monthImgWidth+"px";height=imgHeight+"px";
+  }
+  $spk.appendChild(yearTracker);
+  $spk.appendChild(monthTracker);
+
+  var $ipp=$("wm-ipp");
+  $ipp&&disclaimElement($ipp);
+}
+return{st:showTrackers,mv:trackMouseMove,h:hideToolbar,bt:bootstrap};
+})(525, 27, 25, 2);//]]>
+</script>
+<style type="text/css">
+body {
+  margin-top:0 !important;
+  padding-top:0 !important;
+  min-width:800px !important;
+}
+</style>
+<div id="wm-ipp" lang="en" style="display:none;">
+
+<div style="position:fixed;left:0;top:0;width:100%!important">
+<div id="wm-ipp-inside">
+   <table style="width:100%;"><tbody><tr>
+   <td id="wm-logo">
+       <a href="/web/" title="Wayback Machine home page"><img src="/static/images/toolbar/wayback-toolbar-logo.png" alt="Wayback Machine" width="110" height="39" border="0" /></a>
+   </td>
+   <td class="c">
+       <table style="margin:0 auto;"><tbody><tr>
+       <td class="u" colspan="2">
+       <form target="_top" method="get" action="/web/form-submit.jsp" name="wmtb" id="wmtb"><input type="text" name="url" id="wmtbURL" value="http://c2inet.sce.ntu.edu.sg/ivor/cvm.html" style="width:400px;" onfocus="this.focus();this.select();" /><input type="hidden" name="type" value="replay" /><input type="hidden" name="date" value="20130615042032" /><input type="submit" value="Go" /><span id="wm_tb_options" style="display:block;"></span></form>
+       </td>
+       <td class="n" rowspan="2">
+           <table><tbody>
+           <!-- NEXT/PREV MONTH NAV AND MONTH INDICATOR -->
+           <tr class="m">
+           	<td class="b" nowrap="nowrap">
+		
+		    <a href="/web/20120608082715/http://c2inet.sce.ntu.edu.sg/ivor/cvm.html" title="8 Jun 2012">JUN</a>
+		
+		</td>
+		<td class="c" id="displayMonthEl" title="You are here: 4:20:32 Jun 15, 2013">JUN</td>
+		<td class="f" nowrap="nowrap">
+		
+		    Jul
+		
+                </td>
+	    </tr>
+           <!-- NEXT/PREV CAPTURE NAV AND DAY OF MONTH INDICATOR -->
+           <tr class="d">
+               <td class="b" nowrap="nowrap">
+               
+                   <a href="/web/20120608082715/http://c2inet.sce.ntu.edu.sg/ivor/cvm.html" title="8:27:15 Jun 8, 2012"><img src="/static/images/toolbar/wm_tb_prv_on.png" alt="Previous capture" width="14" height="16" border="0" /></a>
+               
+               </td>
+               <td class="c" id="displayDayEl" style="width:34px;font-size:24px;" title="You are here: 4:20:32 Jun 15, 2013">15</td>
+	       <td class="f" nowrap="nowrap">
+               
+                   <img src="/static/images/toolbar/wm_tb_nxt_off.png" alt="Next capture" width="14" height="16" border="0"/>
+               
+	       </td>
+           </tr>
+           <!-- NEXT/PREV YEAR NAV AND YEAR INDICATOR -->
+           <tr class="y">
+	       <td class="b" nowrap="nowrap">
+               
+                   <a href="/web/20120608082715/http://c2inet.sce.ntu.edu.sg/ivor/cvm.html" title="8 Jun 2012"><strong>2012</strong></a>
+               
+               </td>
+               <td class="c" id="displayYearEl" title="You are here: 4:20:32 Jun 15, 2013">2013</td>
+	       <td class="f" nowrap="nowrap">
+               
+                   2014
+               
+	       </td>
+           </tr>
+           </tbody></table>
+       </td>
+       </tr>
+       <tr>
+       <td class="s">
+           <a class="t" href="/web/20130615042032*/http://c2inet.sce.ntu.edu.sg/ivor/cvm.html" title="See a list of every capture for this URL">5 captures</a>
+           <div class="r" title="Timespan for captures of this URL">12 Oct 11 - 15 Jun 13</div>
+       </td>
+       <td class="k">
+       <a href="" id="wm-graph-anchor">
+       <div id="wm-ipp-sparkline" title="Explore captures for this URL">
+	 <img id="sparklineImgId" alt="sparklines"
+		 onmouseover="__wm.st(1)" onmouseout="__wm.st(0)"
+		 onmousemove="__wm.mv(event,this)"
+		 width="525"
+		 height="27"
+		 border="0"
+		 src="/web/jsp/graph.jsp?graphdata=525_27_1996:-1:000000000000_1997:-1:000000000000_1998:-1:000000000000_1999:-1:000000000000_2000:-1:000000000000_2001:-1:000000000000_2002:-1:000000000000_2003:-1:000000000000_2004:-1:000000000000_2005:-1:000000000000_2006:-1:000000000000_2007:-1:000000000000_2008:-1:000000000000_2009:-1:000000000000_2010:-1:000000000000_2011:-1:000000000111_2012:-1:000001000000_2013:5:000001000000_2014:-1:000000000000_2015:-1:000000000000_2016:-1:000000000000" />
+       </div>
+       </a>
+       </td>
+       </tr></tbody></table>
+   </td>
+   <td class="r">
+       <a href="#close" onclick="__wm.h();return false;" style="background-image:url(/static/images/toolbar/wm_tb_close.png);top:5px;" title="Close the toolbar">Close</a>
+       <a href="http://faq.web.archive.org/" style="background-image:url(/static/images/toolbar/wm_tb_help.png);bottom:5px;" title="Get some help using the Wayback Machine">Help</a>
+   </td>
+   </tr></tbody></table>
+</div>
+</div>
+</div>
+<script type="text/javascript">__wm.bt();</script>
+<!-- END WAYBACK TOOLBAR INSERT -->
+
+ <font color="#ff9900"></font><font color="#cccccc"></font>     
+<table cellspacing="0" cellpadding="5" border="0" width="800">
+     <tbody>
+     <tr>
+       <td valign="top" width="15%">               
+
+       </td>
+       <td valign="top" width="75%">               
+      <h1 align="center"><font color="#000000"><img
+ src="new.gif">
+ LibCVM           Toolkit <font size="+1">Version: 2.2 (beta)</font></font></h1>
+                
+      <p align="center"><font size="+1"><a
+ href="/web/20130615042032/http://www3.ntu.edu.sg/home/IvorTsang/" target="_top"><font size="2">1</font> Ivor W. Tsang</a>, <a
+ href="/web/20130615042032/http://www.inf.u-szeged.hu/~kocsor/" target="_top"><font size="2">2</font> Andras Kocsor 
+      </a>,  <a href="/web/20130615042032/http://www.cse.ust.hk/~jamesk" target="_top"><font size="2">3</font> James 
+T. Kwok</a><br>
+<a href="/web/20130615042032/http://www3.ntu.edu.sg/SCE/" target="_top"><font size="2">1</font> School of Computer 
+ Engineering</a>  		  <br>
+           <a href="/web/20130615042032/http://www.ntu.edu.sg/" target="_top">Nanyang Technological University</a> <br>
+		   <a href="/web/20130615042032/http://www3.ntu.edu.sg/SCE/" target="_top"><font size="2">2</font> Department of Informatics</a>  		  <br>
+           <a href="/web/20130615042032/http://www.inf.u-szeged.hu/starten.xml" target="_top">University of Szeged</a> <br>
+           <a href="/web/20130615042032/http://www.u-szeged.hu/indexe.html" target="_top"><font size="2">3</font> Department of Computer 
+Science and Engineering</a>  		  <br>
+           <a href="/web/20130615042032/http://www.ust.hk/" target="_top">Hong Kong University 
+of Science and Technology</a>          </font> </p>
+                
+      <p align="center"> Last Update: Aug 29, 2011</p>
+       </td>
+       <td valign="top" width="11%">               
+      <h2></h2>
+       </td>
+       <td width="200"><br>
+       </td>
+     </tr>
+        
+  </tbody>   
+</table>
+      
+<hr width="100%">     
+<h2><font color="#000000">Introduction</font></h2>
+    
+<p><font size="+1">The LibCVM Toolkit is a C++ implementation of the <font
+ color="#ff0000">improved</font> <a
+ href="/web/20130615042032/http://c2inet.sce.ntu.edu.sg/ivor/publication/tsang05a.pdf">Core     Vector 
+Machine (CVM)</a> and <font color="#ff0000">recently developed</font> <a
+ href="/web/20130615042032/http://c2inet.sce.ntu.edu.sg/ivor/Publication/tsang07.pdf">Ball Vector 
+Machine (BVM)</a>, which are  fast Support Vector Machine (SVM) training 
+   algorithms using core-set approximation on very large scale    data sets. It is adapted from the <a
+ href="/web/20130615042032/http://www.csie.ntu.edu.tw/~cjlin/libsvm/">LIBSVM</a>    implementation 
+(version 2.85). </font><font size="+1">The code has been used on a large range
+    of problems, including network intrusion detection, face detection and
+implicit     surface modeling.</font></p>
+    
+<p><font size="+1">The main features of the toolkit are the following: </font></p>
+    
+<ul>
+     <li><font color="#ff0000" size="+1">more</font><font size="+1"> stable 
+core       set selection </font>    </li>
+   <li><font color="#ff0000" size="+1">adaptive</font><font size="+1"> epsilon 
+      approximation solution </font>    </li>
+   <li><font color="#ff0000" size="+1">sparse</font><font size="+1"> caching 
+of       kernel evaluations </font> </li>
+     <li><font size="+1">can handle <font color="#ff0000">millions</font> 
+of training       examples </font>    </li>
+   <li><font size="+1">supports standard and several other<font
+ color="#ff0000">      nonlinear</font> <font color="#ff0000">kernel</font> 
+functions </font>    </li>
+   <li><font size="+1">supports <font color="#ff0000">dense </font>and<font
+ color="#ff0000">      sparse</font> vector representations</font></li>
+ <li><font size="+1">supports <font color="#ff0000">multiple </font> training data files and <font color="#ff0000">label renaming </font> </font></li>
+   <li><font size="+1">supports <font color="#ff0000">BVM/CVM/CVM-LS</font> 
+for large-scale classification</font> </li>
+     <li><font size="+1">supports <font color="#ff0000">Core Vector Data
+Description       (CVDD)</font> for large-scale novelty detection</font>
+    <br>
+   </li>
+     <li><font size="+1">supports <font color="#ff0000">Core Vector Regression 
+(CVR)</font>      for large-scale sparse least-squares regression</font></li>
+    
+</ul>
+    
+<p><strong><font size="+1">Pending features:</font></strong></p>
+    
+<ul>
+     
+   <li><font size="+1">multiclass CVM/BVM</font>    </li>
+   <li><font size="+1">probabilistic output estimation for CVM</font>  </li>
+ 
+</ul>
+    
+<p><font color="#000000"><b><font size="+1">If you have any suggestions or 
+bug     findings, please email to ivor.tsang@gmail.com. Thank you!</font></b></font></p>
+    
+<hr width="100%">   
+<h2><font color="#000000">Download</font></h2>
+    
+<ul>
+     <li>           
+    <h2><a href="/web/20130615042032/http://www3.ntu.edu.sg/home/ivortsang/bvm_src_Jan05_2009.zip"><font
+ size="+1">LibCVM</font></a></h2>
+     </li>
+    
+</ul>
+    
+<p><font size="+1">The toolkit is free for research purpose.   	<b><font size="+1">The software is not tested under Linux/Unix platform, and the performance under Linux/Unix platform may not be reliable.	</font></b>  The software 
+    must not be further distributed without prior permission of the authors.  The author is not responsible for implications from the use of this software. If  you use LibCVM Toolkit in your scientific work, please cite as</font></p>
+    
+<ul>
+     <li><font size="+1"><strong><font color="#0000ff">Ivor W. Tsang</font>, 
+James T. Kwok, Pak-Ming Cheung. <a
+ href="/web/20130615042032/http://c2inet.sce.ntu.edu.sg/ivor/publication/tsang05a.pdf">Core       vector
+machines: Fast SVM training on very large data sets.</a> <i>Journal of  
+    Machine Learning Research</i>, 6:363-392, 2005. </strong></font></li>
+     <li><b><font color="#0000ff" size="+1">I</font></b><font size="+1"
+ color="#0000ff"><b>vor W. Tsang</b></font><b><font size="+1">,         Andras 
+Kocsor, James T. Kwok. <a
+ href="/web/20130615042032/http://c2inet.sce.ntu.edu.sg/ivor/Publication/tsang07.pdf">Simpler core 
+vector machines with enclosing           balls</a>. <i>Proceedings 
+of the Twenty-Fourth International Conference on Machine     Learning (ICML)</i>, 
+Corvallis, Oregon, USA, June 2007.</font></b></li>
+    
+</ul>
+    
+<hr width="100%">   
+<h2><font color="#000000">How to Use</font></h2>
+    
+<p> <font size="+1">The toolkit consists of two modules, bvm_train for SVM 
+training     and bvm_predict for SVM prediction. Since the LibCVM Toolbox 
+is adapted from     the LIBSVM, some options are used for LIBSVM only. The 
+options of bvm_train     are:</font></p>
+    
+<pre><big>Usage: bvm-train [options] training_set_file [model_file]<br>options:<br>-s svm_type : set type of SVM (default 9)<br>	 0 -- C-SVC<br>	 1 -- nu-SVC<br>	 2 -- one-class SVM<br>	 3 -- epsilon-SVR<br>	 4 -- nu-SVR<br>	 5 -- CVDD (Core Vector Data Description for novelty detection)<br>	      [Tsang, Kwok, Cheung, JMLR 2005]<br>	 6 -- CVM (sqr. hinge-loss for classification) [Tsang, Kwok, Cheung, JMLR 2005]<br>	 7 -- CVM-LS (sqr. eps.-insensitive loss for sparse least-squares classification)<br>	      [Tsang, Kwok, Lai, ICML 2005]<br>	 8 -- CVR [Tsang, Kwok, Lai, ICML 2005], [Tsang, Kwok, Zurada, TNN 2006]<br>	 9 -- BVM [Tsang, Kocsor, Kwok, ICML 2007]<br>-t kernel_type : set type of kernel function (default 2)<br>	0 -- linear: u'*v<br>	1 -- polynomial: (gamma*u'*v + coef0)^degree<br>	2 -- radial basis function: exp(-gamma*|u-v|^2)<br>	3 -- sigmoid: tanh(gamma*u'*v + coef0)<br>	4 -- precomputed kernel (kernel values in training_set_file)<br>	5 -- laplacian: exp(-sqrt(gamma)*|u-v|)<br>	6 -- normalized poly: ((gamma*u'*v+coef0)/sqrt((gamma*u'*u+coef0)*(gamma*v'*v+coef0)))^degree<br>	7 -- inverse distance: 1/(sqrt(gamma)*|u-v|+1)<br>	8 -- inverse square distance: 1/(gamma*|u-v|^2+1)<br>-d degree : set degree in kernel function (default 3)<br>-g gamma : set gamma in kernel function (default -1, which sets 1/averaged distance between patterns)<br>-r coef0 : set coef0 in kernel function (default 0)<br>-c cost : set the regularization parameter C(= cost) of C-SVC, eps.-SVR, nu-SVR, BVM and CVDD/CVM,<br>          and the regularization parameter C/(mu*m) in CVM-LS s.t. (mu = s_ratio/(cost*m))<br>          (default 100 for BVM/CVDD/CVM/CVM-LS)<br>-C s_ratio : set the scale parameter C = s_ratio*max|Y_i| in CVR, <br>             and the scale parameter C = s_ratio in CVM-LS (same as the scale parameter in LASSO)<br>             (default 10000 for CVR/CVM-LS)<br>-u mu_ratio : set the regularization parameter mu = mu_ratio*max|Y_i| in CVR (default = 0.02)<br>-n nu : set the parameter nu of nu-SVC, one-class SVM, and nu-SVR (default 0.5)<br>-p epsilon : set the epsilon in loss function of epsilon-SVR (default 0.1)<br>-m cachesize : set cache memory size in MB (default 200)<br>-e epsilon : set tolerance of termination criterion<br> (In CVM/BVM, default eps=-1 which sets eps according to the bound |f(x)-f(x)^*|; default 1e-3 for others)<br>-f max #CVs : MAX number of Core Vectors in binary CVM and BVM (default 50000)<br>-h shrinking: whether to use the shrinking heuristics, 0 or 1 (default 1)<br>-b probability_estimates: whether to train a SVC or SVR model for probability estimates, 0 or 1 (default 0)<br>-wi weight: set the parameter C of class i to weight*C, for C-SVC (default 1)<br>-v n: n-fold cross validation mode<br>-a size: sample size for probabilistic sampling (default 60)</big></pre>
+ 
+<p><font size="+1"><br>
+Example: Zero/one digit classification using the Gaussian kernel:</font></p>
+      
+<pre><font size="+1">    bvm_train -s 9 -t 2 -c 100 zero_one.txt zero_one.model.txt</font></pre>
+    
+<p><font size="+1">Example: Forest Cover Type binary class data using the 
+Gaussian     kernel:</font></p>
+    
+<pre><font size="+1">    bvm_train -s 9 -t 2 -c 10000 -g 1e-4 forest.txt forest.model.txt</font></pre>
+    
+<p><font size="+1">Example: KDDCUP-99 Intrusion detection binary class data 
+using     the Gaussian kernel:</font></p>
+    
+<pre><font size="+1">    bvm_train -s 9 -t 2 -c 1000000 intrusion.txt intrusion.model.txt</font></pre>
+    
+<p><font size="+1">    Example: Regression using the Gaussian kernel:</font></p>
+    
+<pre><font size="+1">    bvm_train -s 8 -t 2 -u 0.01 -C 20000 census.txt census.model.txt</font></pre>
+    
+<pre><font size="+1">    bvm_train -s 8 -t 2 -u 0.03 -C 100000 cpu.txt cpu.model.txt</font></pre>
+    
+<p><font size="+1">Note that -g -1 option <font size="+1"> can be used to
+  set the width (gamma) of the Gaussian kernel exp(-gamma*|u-v|^2), where 
+</font></font></p>
+    
+<p align="center"><font size="+1">1/gamma = sum ||x_i-x_j||^2/m^2</font></p>
+    
+<p><font size="+1">is the average distance between patterns from a   		  subsampled
+training set (with 5000 patterns).</font></p>
+    
+<p><font size="+1">The usage of bvm_predict is:</font></p>
+    
+<pre><font size="+1">Usage: bvm_predict [options] test_file model_file output_file <br><br>options:<br><br>   -b probability_estimates: whether to predict probability estimates, 0 or 1 (default 0); <br><br>      one-class SVM not supported yet<br><br>   -r Ranking: whether to output the ranking score or not, 0 or 1 (default 0)</font></pre>
+    
+<p><font size="+1"><br>
+     </font><font size="+1">Example: Zero/one digit classification:</font></p>
+    
+<pre><font size="+1">    bvm_predict zero_one.test.txt zero_one.model.txt zero_one.output.txt</font></pre>
+    
+<p><font size="+1"> Example: Forest cover type binary class classification:</font></p>
+    
+<pre><font size="+1">    bvm_predict forest.test.txt forest.model.txt forest.output.txt</font></pre>
+    
+<p><font size="+1">Example: KDDCUP-99 intrusion detection binary class classification:</font></p>
+    
+<pre><font size="+1">    bvm_predict intrusion.test.txt intrusion.model.txt intrusion.output.txt</font></pre>
+    
+<p><font size="+1">    Example: Regression:</font></p>
+    
+<pre><font size="+1">    bvm_predict census.test.txt census.model.txt census.output.txt</font></pre>
+    
+<pre><font size="+1">    bvm_predict cpu.test.txt cpu.model.txt cpu.output.txt<br><br></font> </pre>
+    
+<hr width="100%">   
+<h2><font color="#000000">File Format</font></h2>
+    
+<p><font size="+1">The LibCVM Toolkit supports both sparse and dense  		 
+data representations. The sparse format is the same as in <a
+ href="/web/20130615042032/http://svmlight.joachims.org/">SVMlight</a>    and <a
+ href="/web/20130615042032/http://www.csie.ntu.edu.tw/~cjlin/libsvm/">LIBSVM</a>. Each line 
+represents     one training example and is of the form: </font></p>
+    
+<pre><font size="+1">    &lt;line&gt; .=. &lt;target&gt; &lt;feature&gt;:&lt;value&gt; &lt;feature&gt;:&lt;value&gt; ... &lt;feature&gt;:&lt;value&gt;<br><br>    &lt;target&gt; .=. &lt;label&gt; | &lt;float&gt; <br>    &lt;feature&gt; .=. &lt;unsigned integer&gt;<br><br>    &lt;value&gt; .=. &lt;float&gt;</font></pre>
+      
+<p><font size="+1">For the dense format,    each line represents one training 
+example and is of the form: </font></p>
+    
+<pre><font size="+1">    &lt;line&gt; .=. &lt;value&gt;,&lt;value&gt;, ... &lt;value&gt;,&lt;target&gt;<br><br>    &lt;target&gt; .=. &lt;label&gt; | &lt;float&gt; <br>    &lt;value&gt; .=. &lt;float&gt;</font> 	 </pre>
+    
+<p><font size="+1">For the multiple training file mode,  the input file is started with a header: </font></p>
+<blockquote>
+  <pre><font size="+1">#m
+N M
+&lt;file name 1&gt;
+...
+&lt;file name N&gt;
+&lt;label renaming rule 1&gt;
+...
+&lt;label renaming rule M&gt;</font>
+</pre>
+  </blockquote>
+<p><font size="+1">The label renaming rule is defined as: </font></p>
+<blockquote>
+  <pre><font size="+1">&lt;label renaming rule&gt; .=. &lt;original label&gt;&gt;&lt;new label&gt;</font>
+</pre>
+</blockquote>
+<font size="+1">E.g.: </font><br>
+<blockquote>
+  <pre><font size="+1">#m
+3 6
+usps1.txt
+usps2.txt
+usps3.txt
+0>1
+1>-1
+2&gt;1
+3&gt;-1
+4&gt;1
+5&gt;-1
+</font>
+</pre>
+</blockquote>
+<hr width="100%">   
+<h2><font color="#000000">Data Files </font></h2>
+    
+<p><font size="+1">Some classification and regresssion data sets used in experiments:</font></p>
+    
+<p><font size="+1"><a
+ href="/web/20130615042032/http://www.cs.ust.hk/~jamesk/data/face.zip">Extended     MIT face 
++ non-face images data set</a> (Dense format: training 489,410 patterns, 
+   testing 24,045 patterns, 361 attributes) (<a
+ href="/web/20130615042032/http://c2inet.sce.ntu.edu.sg/ivor/data/face.zip">full     Sets</a>)</font></p>
+    
+<p><font size="+1"><a
+ href="/web/20130615042032/http://c2inet.sce.ntu.edu.sg/ivor/data/USPS.zip">Extended     USPS 0/1digit 
+images data set</a> (Sparse format: training 266,079 patterns,     testing 
+75,383 patterns, 676 attributes) (<a
+ href="/web/20130615042032/http://c2inet.sce.ntu.edu.sg/ivor/data/USPS.tar.gz">full     Sets</a>)</font></p>
+    
+<p><font size="+1"><a
+ href="/web/20130615042032/http://www.cs.ust.hk/~jamesk/data/forest.zip">Forest     Cover Type 
+binary class data set</a> (Sparse format: training 522,910 patterns,     testing
+58,102 patterns, 54 attributes)</font></p>
+    
+<p><font size="+1"><a
+ href="/web/20130615042032/http://c2inet.sce.ntu.edu.sg/ivor/data/intrusion.zip">KDDCUP-99     intrusion 
+detection binary class data set</a> (Sparse format: training 4,898,431  
+  patterns, testing 311,029 patterns, 127 attributes)</font></p>
+    
+<p><font size="+1"><a
+ href="/web/20130615042032/http://c2inet.sce.ntu.edu.sg/ivor/data/letter.zip">Letter data set</a> (Sparse
+format: training 15,000 patterns,     testing 5,000 patterns, 16 attributes)</font></p>
+    
+<p><font size="+1"><a
+ href="/web/20130615042032/http://c2inet.sce.ntu.edu.sg/ivor/data/reuters.zip">Reuters (money-fx/non money-fx) 
+  data set</a> (Sparse format: training 7,770 patterns, testing 3,299 patterns, 
+  8,315 attributes)</font></p>
+    
+<p><font size="+1"><a
+ href="/web/20130615042032/http://c2inet.sce.ntu.edu.sg/ivor/data/ijcnn1.zip">IJCNN1 data set</a> (Sparse
+format: training 49,990 patterns,     testing 91,701 patterns, 22 attributes)</font></p>
+    
+<p><font size="+1"><a href="/web/20130615042032/http://c2inet.sce.ntu.edu.sg/ivor/data/web.zip">Web 
+data set</a> (Sparse format: training 49,749 patterns,     testing 14,951 
+patterns, 300 attributes)</font></p>
+    
+<p><font size="+1"><a
+ href="/web/20130615042032/http://www.cs.ust.hk/~jamesk/data/census.zip">Census     housing 
+regression data set</a> (Sparse format: training 18,186 patterns, testing 
+    2,273 patterns, 121attributes)</font></p>
+    
+<p><font size="+1"><a href="/web/20130615042032/http://c2inet.sce.ntu.edu.sg/ivor/data/cpu.zip">Computer 
+    activity regression data set</a> (Sparse format: training 6,554 patterns, 
+testing     819 patterns, 21attributes)</font></p>
+    
+<hr width="100%">   
+<h2><font color="#000000">Other References for Core-Set Approximation and Minimum Enclosing Balls </font></h2>
+    
+<ol>
+     <li><font size="+1">Mihai Badoiu, Kenneth L. Clarkson. <a
+ href="/web/20130615042032/http://www.almaden.ibm.com/u/kclarkson/coresets2.pdf">Smaller core-sets 
+for balls</a>. <em> SODA '03: Proceedings of the Fourteenth Annual ACM-SIAM 
+Symposium on Discrete Algorithms</em>, 2003.</font></li>
+     <li><font size="+1">Piyush Kumar, Joseph S. B. Mitchell, and E. Alper Y&#305;ld&#305;r&#305;m. <a href="/web/20130615042032/http://portal.acm.org/citation.cfm?id=996548">Approximate 
+minimum enclosing balls in high dimensions using core-sets.</a> <em>The ACM 
+Journal of Experimental Algorithmics</em>, Vol. 8, Article 1 (2003). </font></li>
+     <li><font size="+1">Pankaj K. Agarwal, Sariel Har-Peled and Kasturi
+R. Varadarajan. <a
+ href="/web/20130615042032/http://valis.cs.uiuc.edu/~sariel/papers/04/survey/">Geometric Approximation 
+via Coresets</a></font>.</li>
+     
+  <li><font size="+1">Piyush Kumar and E. Alper Y&#305;ld&#305;r&#305;m. <a
+ href="/web/20130615042032/http://citeseer.ist.psu.edu/731678.html">Minimum volume enclosing ellipsoids 
+    and core sets</a>, <em>Journal of Optimization Theory and Applications,</em> 
+    126 (1) pp. 1-21 (2005).</font></li>
+
+<li><font color="#0000ff" size="+1">Ivor W. Tsang</font><font
+ size="+1">, James T. Kwok, Pak-Ming Cheung. <a
+ href="/web/20130615042032/http://c2inet.sce.ntu.edu.sg/ivor/publication/aistats05.pdf">Very large SVM training using core vector machines.</a>. <em> AISTATS</em>,  Jan 2005.</font></li>
+		
+<li><font color="#0000ff" size="+1">Ivor W. Tsang</font><font
+ size="+1">, James T. Kwok, Kimo T. Lai. <a
+ href="/web/20130615042032/http://c2inet.sce.ntu.edu.sg/ivor/publication/icml05.pdf">Core Vector Regression
+for Very Large Regression Problems</a>. <em>Proceedings of the Twentieth-Second
+International Conference on Machine Learning (ICML-2005)</em>, pp.913-920,
+Bonn, Germany, August 2005.</font></li>
+     <li><font color="#0000ff" size="+1">Ivor W.   Tsang</font><font
+ size="+1">, James T. Kwok, Jacek M. Zurada. <a
+ href="/web/20130615042032/http://c2inet.sce.ntu.edu.sg/ivor/publication/tnn06b.pdf">Generalized core
+vector machines</a>. <em>IEEE Transactions on Neural Networks</em>, 17(5):
+1126- 1140, Sept 2006.</font></li>
+     <li><font size="+1">Rina Panigrahy. <a
+ href="/web/20130615042032/http://arxiv.org/abs/cs/0407020">Minimum Enclosing Polytope in High 
+Dimensions.</a></font></li>
+<li><font color="#0000ff" size="+1">Ivor W. Tsang,</font><font size="+1"> Andras Kocsor, James T. Kwok.   <a
+ href="/web/20130615042032/http://c2inet.sce.ntu.edu.sg/ivor/publication/kdd06.pdf"> Efficient kernel feature extraction for massive data sets. </a> <em>Proceedings of the ACM SIGKDD International Conference on Knowledge Discovery and Data Mining (KDD'06)</em>: pp.724-729, Philadelphia, USA, August 2006.</font>   </li>
+ <li><font color="#0000ff" size="+1">Ivor W. Tsang,</font><font size="+1"> Andras Kocsor, James T. Kwok.   <a
+ href="/web/20130615042032/http://c2inet.sce.ntu.edu.sg/ivor/publication/ecml06.pdf"> Diversified SVM ensembles for large data sets.  </a> <em>Proceedings of the European Conference on Machine Learning (ECML 2006)</em>, pp.792-800, Berlin, Germany, September 2006.</font>   </li>
+     <li><font size="+1">S. Asharaf, M. Narasimha Murty, Shirish Krishnaj 
+Shevade.       <a
+ href="/web/20130615042032/http://ieeexplore.ieee.org/iel5/4053012/4053013/04053149.pdf?tp=&amp;isnumber=&amp;arnumber=4053149">Cluster 
+      Based Core Vector Machine</a>. <em>Proceedings of International Conference on Data Mining (ICDM) 2006</em>: 1038-1042, 2006.</font>   </li>
+     <li><font size="+1">Yulai Xie,       Jack Snoeyink,       Jinhui Xu. 
+    <a
+ href="/web/20130615042032/http://portal.acm.org/citation.cfm?id=1137861&amp;jmp=cit&amp;coll=ACM&amp;dl=GUIDE">Efficient 
+algorithm for approximating maximum inscribed sphere in high   dimensional 
+polytope.</a> <em>Proceedings of the twenty-second annual symposium on   Computational
+geometry</em>, pp: 21 - 29, 2006.</font> </li>
+     <li><font color="#0000ff" size="+1">Ivor W. Tsang</font><font
+ size="+1">, James T. Kwok.<a
+ href="/web/20130615042032/http://c2inet.sce.ntu.edu.sg/ivor/publication/nips06.pdf"> Large-scale 
+sparsified manifold regularization.</a> <em>Proceedings of the Neural Information 
+Processing Systems (NIPS)</em>, Vancouver, Canada, December 2006. </font></li>
+     <li><font color="#0000ff" size="+1">Ivor W. Tsang</font><font
+ size="+1">, James T. Kwok</font>. <a href="reply.pdf"><font size="+1">Authors' 
+Reply to the "Comments       on the Core Vector Machines: Fast SVM Training 
+on Very Large Data Set"</font></a>.<br>
+     </li>
+     <li><font size="+1">Sariel Har-Peled, Dan Roth, Dav Zimak. <a
+ href="/web/20130615042032/http://valis.cs.uiuc.edu/~sariel/papers/06/margin/">Maximum Margin 
+Coresets for Active and   Noise Tolerant Learning</a>. <em>Proceedings of 20th International Joint Conference on Artificial Intelligence (IJCAI)
+ 2007</em>:   836-841</font></li>
+     <li><font size="+1">Sariel Har-Peled, Akash Kushal: <a
+ href="/web/20130615042032/http://valis.cs.uiuc.edu/~sariel/papers/04/small_coreset/">Smaller 
+  Coresets for k-Median and k-Means Clustering</a>. <em>Discrete &amp;   Computational
+Geometry</em> 37(1): 3-19 (2007)</font>.</li>
+     <li><font size="+1">Seshikanth Varma, S. Asharaf, M. Narasimha Murty. 
+    <a href="/web/20130615042032/http://www.springerlink.com/content/rlv58w0447447h12/">Rough 
+      Core Vector Clustering</a>. <em>Pattern Recognition and Machine Intelligence, 
+      2007.</em></font></li>
+     <li><font size="+1">Seshikanth Varma,</font> <font size="+1">S. Asharaf, 
+M. Narasimha Murty.   Core Vector Clustering. <em>Proceedings of the 3rd Indian
+International Conference on Artificial   Intelligence, Pune, India</em>, 565-574,
+2007. </font></li>
+     <li><font size="+1">S. Asharaf, M. Narasimha Murty, S. K. Shevade. <a
+ href="/web/20130615042032/http://portal.acm.org/citation.cfm?id=1273502">Multiclass core vector 
+machine</a>.     <em>Proceedings of the 24th international conference on Machine
+learning (ICML)</em>, Corvalis, Oregon, Pages: 41 - 48, 2007.</font></li>
+     <li> <font size="+1">Lessmann, Stefan   Li, Ning   Voss, Stefan.
+    <a
+ href="/web/20130615042032/http://ieeexplore.ieee.org/xpls/abs_all.jsp?arnumber=4438781">A Case 
+Study of Core Vector Machines in Corporate   Data Mining</a>. <em>Proceedings 
+of the 41st Annual Hawaii International Conference on System Sciences</em>, 
+78-78, 2008.</font><br>
+     </li>
+     <li><font size="+1">Kenneth L. Clarkson. <a
+ href="/web/20130615042032/http://www.almaden.ibm.com/u/kclarkson/pubs.html#sga">Coresets,  
+    Sparse Greedy Approximation, and Frank-Wolfe Algorithm</a></font>. <font
+ size="+1"><em>SODA '08: Proceedings of the ACM-SIAM Symposium on Discrete 
+  Algorithms</em>, 2008</font>.</li>
+     <li><font size="+1">E. Alper Y&#305;ld&#305;r&#305;m. <a
+ href="/web/20130615042032/http://www.optimization-online.org/DB_FILE/2007/05/1654.pdf">Two  
+algorithms for the minimum enclosing ball problem.</a>   <em>SIAM J. Optim. Volume 19, Issue 3,</em> pp. 1368-1391, 2008 </font></li>
+
+<li><font color="#0000ff" size="+1">Ivor W. Tsang</font><font size="+1">, Andras Kocsor, James T. Kwok. <a
+ href="/web/20130615042032/http://c2inet.sce.ntu.edu.sg/ivor/publication/tnn08.pdf">Large-Scale Maximum Margin Discriminant Analysis Using Core Vector Machines.</a>   <em>IEEE Transactions on Neural Networks, 19(4)</em> 610-624, April 2008 </font></li>
+ <li><font size="+1">Piyush Rai, Hal Daum´e III, Suresh Venkatasubramanian. <a
+ href="/web/20130615042032/http://www.cs.utah.edu/~hal/docs/daume09onepass.pdf">Streamed Learning: One-Pass SVMs.</a> <em>Proceedings of the 21st International Joint Conference on Artificial Intelligence (IJCAI) </em>, 2009 </font></li>
+     <li><font size="+1">Aditya Krishna Menon. <a
+ href="/web/20130615042032/http://cseweb.ucsd.edu/~akmenon/ResearchExam.pdf">Large-Scale Support Vector Machines: Algorithms and Theory.</a>   2009 </font></li>
+ <li><font size="+1">Fu-Lai Chung,   Zhaohong Deng,   Shitong Wang. <a
+ href="/web/20130615042032/http://ieeexplore.ieee.org/xpl/freeabs_all.jsp?arnumber=4637848">From minimum enclosing ball to fast fuzzy inference system training on large datasets.</a>  <em> IEEE Transactions on Fuzzy Systems</em>, Volume 17, Issue 1, P. 173 - 184, Feb  2009 </font></li>
+  
+ <li><font size="+1">Di Wanga, Bo Zhanga,  Peng Zhanga,  and Hong Qiaob. <a
+ href="/web/20130615042032/http://www.sciencedirect.com/science/article/pii/S003132031000244X">An online core vector machine with adaptive MEB adjustment</a>  <em> Pattern Recognition </em>, Volume 43, Issue 10, P. 3468-3482, October  2010 </font></li>
+ <li><font size="+1">Stefano Lodi, Ricardo  Nanculef, Claudio Sartori. <a
+ href="/web/20130615042032/http://www.siam.org/proceedings/datamining/2010/dm10_023_lodis.pdf">Single-Pass Distributed Learning of Multi-Class SVMs
+using Core-Sets.</a> <em>Proceedings of SIAM Data Mining (SDM)</em>,  2010 </font></li>
+
+ <li><font size="+1">Bin Gu, Jian-Dong Wang and Tao Li. <a
+ href="/web/20130615042032/http://www.springerlink.com/content/b1577v6w98087980/">Ordinal-Class Core Vector Machine.</a> <em>Journal of Computer Science and Technology
+</em>, Volume 25, Number 4, 699-708, 2010 </font></li>
+ <li><font size="+1">Yi-Hung Liu,   Yan-Chen Liu,   Yen-Jen Chen. <a
+ href="/web/20130615042032/http://ieeexplore.ieee.org/Xplore/login.jsp?url=http%3A%2F%2Fieeexplore.ieee.org%2Fiel5%2F72%2F5536895%2F05510185.pdf%3Farnumber%3D5510185&amp;authDecision=-203">Fast Support Vector Data Descriptions for Novelty Detection .</a>  <em> IEEE Transactions on Neural Networks</em>, Volume 21, Issue 8, P. 1296 - 1313, Aug  2010 <font></li>
+
+ <li><font size="+1">Kenneth L. Clarkson, Elad Hazan, David P. Woodruff. <a
+ href="/web/20130615042032/http://arxiv.org/abs/1010.4408">Sublinear Optimization for Machine Learning.</a> <em>
+</em> 2010 </font></li>
+ 
+ <li><font size="+1">Piyush Kumar and E. Alper Y&#305;ld&#305;r&#305;m. <a
+ href="/web/20130615042032/http://compgeom.com/~piyush/papers/svm.pdf">	
+A Linearly Convergent Algorithm for Support Vector Classification with a Core-set Result.</a> <em>INFORMS Journal on Computing</em>,  2010 </font></li>
+ 
+ <li><font size="+1">Ankan Saha, S. V. N. Vishwanathan, and Xinhua Zhang. <a
+ href="/web/20130615042032/http://www.stat.purdue.edu/~vishy/papers/SahVisZha11.pdf">New Approximation Algorithms for Minimum Enclosing Convex Shapes.</a> <em>ACM-SIAM Syposium on Discrete Algorithms (SODA)</em>,  2011 </font></li>
+ 
+ <li><font size="+1">Dijun Luo and Heng Huang. <a
+ href="/web/20130615042032/http://ijcai.org/papers11/Papers/IJCAI11-235.pdf">Ball Ranking Machine for Content-Based Multimedia Retrieval.</a> <em>Proceedings of the 22nd International Joint Conference on Artificial Intelligence (IJCAI)</em>,  2011 </font></li>
+ 
+ <li><font size="+1">Zhaohong Deng,   Kup-Sze Choi,   Fu-Lai Chung,   Shitong Wang. <a
+ href="/web/20130615042032/http://ieeexplore.ieee.org/xpl/freeabs_all.jsp?arnumber=5629439">Scalable TSK Fuzzy Modeling for Very Large Datasets Using Minimal-Enclosing-Ball Approximation.</a>  <em> IEEE Transactions on Fuzzy Systems</em>, Volume 19, Issue 2, P. 210 -226, April  2011 </font></li>
+ 
+ 
+</ol>
+    
+<hr width="100%">   
+
+    
+
+    
+
+ <br>
+  </body>
+</html>
+
+
+
+
+
+<!--
+     FILE ARCHIVED ON 4:20:32 Jun 15, 2013 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 8:30:25 Jan 7, 2016.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
